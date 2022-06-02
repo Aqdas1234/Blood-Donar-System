@@ -17,7 +17,8 @@ struct patient{
 patient donar()
 {      patient p;
 	cout<<"enter the donar name:  ";
-	   cin>>p.name;
+	   cin.ignore();
+	   cin.getline(p.name,20);
 		cout<<"enter donar\'s phone number: ";
 		cin>>p.ph;
 		cout<<"enter donar\'s blood group: ";
@@ -75,7 +76,7 @@ void show(patient pr)
 	cout<<"Blood group:"<<pr.bld_gp<<endl;
 	cout<<"city: "<<pr.city<<endl;
 	cout<<"phone number: "<<pr.ph<<endl;
-	cout<<" last date of donation formate(D/M/Y): "<<pr.dt.d<<"-"<<pr.dt.m<<"-"<<pr.dt.y;
+	cout<<"last date of donation formate(D/M/Y): "<<pr.dt.d<<"-"<<pr.dt.m<<"-"<<pr.dt.y;
 	cout<<endl;
 }
 void update(patient pr);
@@ -113,7 +114,8 @@ else	if(n==2)
 	{     int i=0;
 		cout<<"enter the donar\'s name whose you want to know the data :";
 		 char n[20];
-		cin>>n;
+	cin.ignore();
+	   cin.getline(n,20);
 			fstream file("bds_donor_data.txt",ios::in);
 			
 				while(!file.eof())
@@ -165,10 +167,11 @@ else if(n==4)
 }
  else if(n==5)
 {
-			 char n[15];
+			 char n[20];
 	   char bd_gp[5];
 	cout<<"enter the patient\'s name whose you want to delete the data : ";
-	cin>>n;
+	cin.ignore();
+	   cin.getline(n,20);
 	cout<<"and also its blood group: ";
 	cin>>bd_gp;
 
@@ -181,7 +184,7 @@ int i=remove(pr,n,bd_gp);
 }
 
 else if(n==6)
-{
+{     int a=0;
 			fstream file("bds_donor_data.txt",ios::in);
 			
 				while(!file.eof())
@@ -190,8 +193,13 @@ else if(n==6)
     	if(file.eof())
     	break;
     	show(pr);
+    	a++;
 		}
 		file.close();
+		
+		if(a==0){
+			cout<<"\n your file is empty! \n";
+		}
 }
 else {
 // cout<<"please select right option!";
@@ -210,7 +218,8 @@ do{
 			 char n[20];
 	   char bd_gp[5];
 	cout<<"enter the patient\'s name whose you want to update the data : ";
-	cin>>n;
+		cin.ignore();
+	   cin.getline(n,20);;
 	cout<<"and also its blood group: ";
 	cin>>bd_gp;
 	cout<<"if you want to update only last date of donation then press 1:\n";
